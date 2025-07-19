@@ -19,20 +19,20 @@ const Login: React.FC = () =>
     email: "",
     password: "",
   };
-
-  const onSubmit = async (
+ const onSubmit = async (
     values: LoginFormValues,
     { setSubmitting }: FormikHelpers<LoginFormValues>
   ): Promise<void> => {
     try {
       const response = await axios.post("http://localhost:3000/api/v1/user/login", values);
-
+ 
       if (response.status === 200) {
         const profile = {
           email: response.data.user.email,
           role: response.data.user.role,
           id: response.data.user._id,
         };
+        localStorage.setItem("token", response.data.token);
         dispatch(login({ accessToken: response.data.token, user: profile }));
         navigate("/dashboard");
       }
@@ -42,7 +42,6 @@ const Login: React.FC = () =>
       setSubmitting(false);
     }
   };
-
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email format")

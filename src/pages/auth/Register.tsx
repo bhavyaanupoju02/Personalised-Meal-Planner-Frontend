@@ -157,7 +157,7 @@ const Register: React.FC = () => {
               <ErrorMessage name="age" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div className="m-4 w-full">
-              <label htmlFor="height" className="block font-medium">Height (cm)</label>
+              <label htmlFor="height" className="block font-medium">Height (mt)</label>
               <Field type="number" name="height" id="height" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" />
               <ErrorMessage name="height" component="div" className="text-red-500 text-sm mt-1" />
             </div>

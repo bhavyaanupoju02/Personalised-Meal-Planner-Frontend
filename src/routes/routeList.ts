@@ -1,11 +1,21 @@
-import {ISidebarRoute} from "../interface/interface"
-export const userSideBarRouteList:ISidebarRoute[]=[
+interface ISideBar {
+    name:string,
+    link:string
+}
+ 
+ 
+export const userSideBarRouteList:ISideBar[]=[
     {
-        name:"User Dashboard",
+        name:"BMI",
         link: "/dashboard"
     },
     {
-        name:"User Profile",
-        link: "/dashboard/register1"
+        name:"DailyPlan",
+        link: "/dashboard/daily-mealPlan"
     },
+    {
+        name:"Weekly Plan",
+        link: "/dashboard/weekly-mealPlan"
+    },
+
 ]
