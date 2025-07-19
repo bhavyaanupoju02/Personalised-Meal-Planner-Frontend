@@ -31,7 +31,7 @@ const BMICalculator: React.FC = () => {
       <h2 className="text-2xl font-bold mb-4 text-yellow-400">BMI Calculator</h2>
 
       <div className="mb-4">
-        <label className="block mb-1">Height (mts)</label>
+        <label className="block mb-1">Height (cms)</label>
         <input
           type="number"
           value={height}

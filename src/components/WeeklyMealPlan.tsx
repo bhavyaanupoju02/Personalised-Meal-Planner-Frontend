@@ -42,68 +42,72 @@ const WeeklyMealPlan: React.FC = () => {
   const categories: MealCategory[] = ["Breakfast", "Lunch", "Snacks", "Dinner"];
   const days: WeekDay[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-4 text-center">📅 Weekly Meal Plan</h1>
-
-      <div className="flex justify-center space-x-2 mb-4 flex-wrap">
-        {days.map((day) => (
-          <button
-            key={day}
-            onClick={() => setActiveDay(day)}
-            className={`px-3 py-1 rounded-full text-sm font-medium ${
-              activeDay === day ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            {day}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex justify-center space-x-4 mb-6">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`px-4 py-2 rounded-full font-medium ${
-              activeCategory === category ? "bg-green-600 text-white" : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <table className="w-full table-auto border-collapse">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border px-4 py-2 text-left">Time</th>
-            <th className="border px-4 py-2 text-left">Meal Item</th>
-            <th className="border px-4 py-2 text-left">Description</th>
-            <th className="border px-4 py-2 text-left">Calories</th>
+{/* Responsive Table Wrapper */}
+<div className="w-full overflow-x-auto">
+  <table className="w-full min-w-[700px] table-auto border-collapse">
+    <thead>
+      <tr className="bg-gray-100">
+        <th className="border px-4 py-2 text-left text-sm sm:text-base whitespace-nowrap min-w-[80px]">Time</th>
+        <th className="border px-4 py-2 text-left text-sm sm:text-base min-w-[120px]">Meal Item</th>
+        <th className="border px-4 py-2 text-left text-sm sm:text-base min-w-[200px]">Description</th>
+        <th className="border px-4 py-2 text-left text-sm sm:text-base min-w-[100px]">Calories</th>
+      </tr>
+    </thead>
+    <tbody>
+      {weeklyMealData[activeDay][activeCategory].length > 0 ? (
+        weeklyMealData[activeDay][activeCategory].map((item, index) => (
+          <tr key={index} className="hover:bg-gray-50">
+            <td className="border px-4 py-2 whitespace-nowrap">{item.time}</td>
+            <td className="border px-4 py-2">{item.name}</td>
+            <td className="border px-4 py-2">{item.description}</td>
+            <td className="border px-4 py-2">{item.calories}</td>
           </tr>
-        </thead>
-        <tbody>
-          {weeklyMealData[activeDay][activeCategory].length > 0 ? (
-            weeklyMealData[activeDay][activeCategory].map((item, index) => (
-              <tr key={index} className="hover:bg-gray-50">
-                <td className="border px-4 py-2">{item.time}</td>
-                <td className="border px-4 py-2">{item.name}</td>
-                <td className="border px-4 py-2">{item.description}</td>
-                <td className="border px-4 py-2">{item.calories}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={4} className="text-center py-4 text-gray-500">
-                No meals planned for {activeCategory} on {activeDay}.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
+        ))
+      ) : (
+        <tr>
+          <td colSpan={4} className="text-center py-4 text-gray-500">
+            No meals planned for {activeCategory} on {activeDay}.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
+
+{/* Responsive Table */}
+<div className="w-full overflow-x-auto">
+  <table className="min-w-[600px] w-full table-auto border-collapse">
+    <thead>
+      <tr className="bg-gray-100">
+        <th className="border px-4 py-2 text-left">Time</th>
+        <th className="border px-4 py-2 text-left">Meal Item</th>
+        <th className="border px-4 py-2 text-left">Description</th>
+        <th className="border px-4 py-2 text-left">Calories</th>
+      </tr>
+    </thead>
+    <tbody>
+      {weeklyMealData[activeDay][activeCategory].length > 0 ? (
+        weeklyMealData[activeDay][activeCategory].map((item, index) => (
+          <tr key={index} className="hover:bg-gray-50">
+            <td className="border px-4 py-2 whitespace-nowrap">{item.time}</td>
+            <td className="border px-4 py-2">{item.name}</td>
+            <td className="border px-4 py-2">{item.description}</td>
+            <td className="border px-4 py-2">{item.calories}</td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={4} className="text-center py-4 text-gray-500">
+            No meals planned for {activeCategory} on {activeDay}.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
+
 };
 
 export default WeeklyMealPlan;
